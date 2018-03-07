@@ -6,9 +6,14 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+ 
+ //The logic here is that merge, l1 and l2 are just helping us get the pointers of new node to retrieve their values. 
+ //Head is keeping the track of the merged list
+
+ 
 class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        ListNode head = new ListNode(0); // dummy 
+        ListNode head = new ListNode(0); // dummy value which will be neglected when we return
         ListNode merge = head;
           while(l1!=null || l2!=null){
            if(l1!=null && l2!=null)  
@@ -16,7 +21,7 @@ class Solution {
               if(l1.val< l2.val) 
            {
              merge.next = l1; 
-              l1=l1.next;
+              l1=l1.next; //l1 points to the next element in List1
            }
             else
             {
