@@ -1,0 +1,17 @@
+class Solution {
+    public int findLHS(int[] nums) {
+        
+        HashMap<Integer,Integer> hash = new HashMap<Integer,Integer>();
+        int longest=0;
+        for(int element:nums)
+        //track of every number and it's occurence count
+            hash.put(element, hash.getOrDefault(element,0) +1);
+        for(int key : hash.keySet()){
+        //difference is 1
+            if(hash.containsKey(key + 1))
+            //sum of the occurences of both the elements
+                longest=Math.max(longest, hash.get(key) + hash.get(key+1));          
+        }
+       return longest; 
+    }
+}
