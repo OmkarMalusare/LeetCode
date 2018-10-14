@@ -1,0 +1,19 @@
+class Solution {
+    public int[][] reconstructQueue(int[][] people) {
+        Arrays.sort(people, new SortingLogic());
+        List<int[]> list = new LinkedList<>();
+        for (int[] each : people) 
+            list.add(each[1], each);
+        int[][] result = new int [list.size()][2];
+            result =list.toArray(result);
+        return result;
+    }
+}
+class SortingLogic implements Comparator<int[]>{
+            public int compare(int[] pair1, int[] pair2) {
+                if (pair1[0] == pair2[0]) {
+                    return pair1[1] - pair2[1]; 
+                }
+                return pair2[0] - pair1[0];
+            }
+}
