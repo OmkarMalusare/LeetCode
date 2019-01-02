@@ -1,0 +1,34 @@
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> finalResult = new ArrayList<>();
+        
+        List<String> arrayToSortedlist = new ArrayList<>();
+        
+        for(String each: strs){
+           char [] characterArray = each.toCharArray();
+            Arrays.sort(characterArray);
+            String s = new String(characterArray);
+            
+            arrayToSortedlist.add(s);
+        }
+        
+        Map<String,List<String>> maptoSortedList = new HashMap<>();
+        int i=0;
+        for(String each: arrayToSortedlist){      
+        List<String> newList = maptoSortedList.get(each);
+            if(newList==null){
+                newList = new ArrayList<>();
+                maptoSortedList.put(each,newList);
+            }
+            newList.add(strs[i++]);
+            
+            }
+        
+        for(String each: maptoSortedList.keySet()){
+            finalResult.add(maptoSortedList.get(each));
+            
+        }
+        return finalResult;
+        
+    }
+}
