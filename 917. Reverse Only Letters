@@ -1,0 +1,43 @@
+import java.util.*;
+class Solution {
+    public String reverseOnlyLetters(String S) {
+        
+        
+        if(S == null || S.length() == 0)
+            return "";
+        
+        int start = 0;
+        int end = S.length() -1;
+        
+        char [] characterArray = S.toCharArray();
+        
+        
+        while(start < end){
+            
+            if(!Character.isLetter(characterArray[start])){
+               start++;
+            continue;
+                
+            }
+               
+            if(!Character.isLetter(characterArray[end])){
+                end--;
+                continue;
+                
+            }
+               
+         
+              char temp = characterArray[start];
+              characterArray[start] = characterArray[end];
+             characterArray[end] = temp;
+            
+            start++;
+            end--;
+            
+            }
+        
+        return new String(characterArray);
+            
+        
+    }
+}
