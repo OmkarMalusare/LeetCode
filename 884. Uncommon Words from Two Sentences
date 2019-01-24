@@ -1,0 +1,31 @@
+class Solution {
+    public String[] uncommonFromSentences(String A, String B) {
+        
+        
+        Map<String, Integer> wordCount = new HashMap<>();
+        
+        for(String each: A.split("\\s+")){
+            
+           wordCount.put(each, wordCount.getOrDefault(each,0)+1);
+        }
+        
+       for(String each: B.split("\\s+")){
+            
+           wordCount.put(each, wordCount.getOrDefault(each, 0) + 1);
+        }
+        
+        
+        List<String> unCommonWordList = new ArrayList<>();
+        for(String each: wordCount.keySet()){
+            
+            if(wordCount.get(each) == 1)
+                unCommonWordList.add(each);
+            
+        }
+    
+        String [] uncommonWordArray = new String [unCommonWordList.size()];
+        uncommonWordArray = unCommonWordList.toArray(uncommonWordArray);
+        
+        return uncommonWordArray;
+}
+}
