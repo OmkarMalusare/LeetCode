@@ -1,0 +1,31 @@
+class Solution {
+    public int longestPalindrome(String s) {
+        
+        if(s == null || s.length() == 0)
+            return 0;
+        
+        Map<Character, Integer> characterCounter = new HashMap<>();
+        
+        for(Character each: s.toCharArray()){
+            
+            characterCounter.put(each, characterCounter.getOrDefault(each, 0) + 1 );
+        }
+        
+
+        int lengthOfLongestPalindrome = 0;
+        
+        for(Character each: characterCounter.keySet()){
+            
+            int current = characterCounter.get(each);
+            if(current % 2 == 1)
+                current = current - 1;
+            
+            lengthOfLongestPalindrome += current;
+        }
+        
+        if(lengthOfLongestPalindrome < s.length())
+            return lengthOfLongestPalindrome + 1;
+            
+        return lengthOfLongestPalindrome;
+    }
+}
