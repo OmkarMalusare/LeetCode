@@ -1,0 +1,52 @@
+//Using Division
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        
+        if(nums == null || nums.length < 2)
+            return null;
+        
+        int [] output = new int[nums.length];
+        
+        int product = 1;
+        int count = 0;
+        
+        for(int i=0; i<nums.length; i++){ 
+            
+            if(nums[i] == 0){ 
+                
+               count++;         
+            }
+            
+            else{ 
+                
+            product *= nums[i];
+            
+             }
+        }
+        
+        for(int i=0; i<nums.length; i++){
+            
+            if(count > 1)
+            break;
+            
+            else if(count == 1){
+                
+               if(nums[i] != 0) 
+                continue;
+                
+                else{
+                    output[i] = product;
+                    break;
+                }
+            
+            }
+            
+            else
+            output[i] = product/nums[i];
+                
+            }
+        
+        
+        return output;
+    }
+}
