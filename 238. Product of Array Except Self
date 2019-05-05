@@ -50,3 +50,43 @@ class Solution {
         return output;
     }
 }
+
+Better Approach - W/o division and no extra space
+
+//intuition - 
+//[1,2,3,4]
+//left = [1,1,2,3] - prodcut of all the left elements
+//right = [24,12,4,1] - product of all the right elements
+//output = left[i] * right[i]
+
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        
+        if(nums == null || nums.length < 2)
+            return null;
+      
+        int [] output = new int[nums.length];
+        
+        //using same array for both the left and right calculations
+        for(int i=0; i<output.length; i++)
+            output[i] = 1;
+        
+        int left = 1;
+            for(int i=0; i<nums.length; i++){
+                
+                output[i] *= left;
+                left *= nums[i];
+                
+            }
+        
+        int right = 1;
+        for(int i=nums.length -1; i>=0; i--){
+                
+                output[i] *= right;
+                right *= nums[i];
+                
+            }
+        
+        return output;
+    }
+}
