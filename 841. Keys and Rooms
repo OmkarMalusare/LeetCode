@@ -1,0 +1,57 @@
+class Solution {
+    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+        
+        if(rooms == null || rooms.size() == 0)
+            return false;
+        
+        if(rooms.size() == 1 && (rooms.get(0) == null || rooms.get(0).size() == 0))
+            return true;
+        
+        Map<Integer, List<Integer>> roomToKeys = new HashMap<>();
+        boolean [] visitedRoom = new boolean[rooms.size()];
+        
+        for(int i=0; i<rooms.size(); i++){
+            for(int j=0; j<rooms.get(i).size(); j++){
+                
+                List<Integer> listOfKeys;
+                
+                if(!roomToKeys.containsKey(i)){
+                    
+                    listOfKeys = new LinkedList<Integer>();
+                    listOfKeys.add(rooms.get(i).get(j));
+                    roomToKeys.put(i, listOfKeys);
+                }
+                else{ 
+                    
+                     listOfKeys = roomToKeys.get(i);
+                     listOfKeys.add(rooms.get(i).get(j));
+                }
+                
+            }
+        }
+        
+       
+        vistRoomUtil(roomToKeys, visitedRoom, 0);
+        
+        for(int i=0; i<visitedRoom.length; i++){
+            
+        
+             if(!visitedRoom[i])
+                return false;
+        }
+        return true;
+    }
+    
+    public void vistRoomUtil(Map<Integer, List<Integer>> roomToKeys, boolean [] visitedRoom, int roomNo){
+        
+        visitedRoom[roomNo] = true;
+        
+    if(roomToKeys.containsKey(roomNo)){
+        for(Integer each: roomToKeys.get(roomNo)){            
+            if(!visitedRoom[each])
+                vistRoomUtil(roomToKeys, visitedRoom, each);                      
+        }
+    
+    }
+}
+}
